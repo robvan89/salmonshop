@@ -12,6 +12,11 @@ body {
   margin-right: auto;
 }
 
+th {
+  color: #000;
+  font-size: 1.2em;
+}
+
 .logo {
   text-align:center;
   font-family: 'Oswald', sans-serif;
@@ -35,13 +40,13 @@ nav li:hover, nav li a:hover {
 }
 
 table {
-  border: 0px;
+  border: 1px solid #000;
   margin-left: auto;
   margin-right: auto;
   font-family: sans-serif;
 }
 
-
+tr 
 
 .tme {
   color: #630057;
