@@ -82,10 +82,6 @@ var render = function(event) {
   var newstoreMax = parseInt(event.target.maxfield.value);
   var newstoreAvg = parseInt(event.target.avgfield.value);
 
-  if (newstoreMin || newstoreMax || newstoreAvg === NaN) {
-     return alert('Please enter a number.');
-   }
-
   if(newstoreMin > newstoreMax) {
     return alert('Min must be less than max.');
   }
