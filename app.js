@@ -77,14 +77,14 @@ var render = function(event) {
     return alert('Fields cannot be empty!');
    }
 
-  if ((event.target.minfield.value || event.target.maxfield.value || event.target.avgfield.value) === NaN) {
-     return alert('Please enter a number.');
-   }
-
   var newstoreName = event.target.storename.value;
   var newstoreMin = parseInt(event.target.minfield.value);
   var newstoreMax = parseInt(event.target.maxfield.value);
   var newstoreAvg = parseInt(event.target.avgfield.value);
+
+  if (newstoreMin || newstoreMax || newstoreAvg === NaN) {
+     return alert('Please enter a number.');
+   }
 
   if(newstoreMin > newstoreMax) {
     return alert('Min must be less than max.');
