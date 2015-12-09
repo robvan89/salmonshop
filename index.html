@@ -21,14 +21,18 @@
         </ul>
       </nav>
       <section class="results">
-        <table>
-          <tr>
-            <td id="tm" class="tme">
-            </td>
-            <td id="rs" class="rsu">
-            </td>
-          </tr>
-        </table>
+        <form id="storenameForm">
+      <fieldset>
+        <legend>Enter Store Info</legend>
+        <label for="storename">Store Name:<input name="storename" type="text" placeholder="Store Name"></label>
+        <label for="minfield">Minimum Customers/Hour:<input name="minfield" type="text" placeholder='Minimum'></label>
+        <label for="maxfield">Maximum Customers/Hour:<input name="maxfield" type="text" placeholder='Maximum'></label>
+        <label for="avgfield">Average Cookies/Customer:<input name="avgfield" type="text" placeholder='Average'></label>
+        <input id="user-submit" type="submit" value="Submit">
+      </fieldset>
+    </form>
+        <p id="tm">
+        </p>
 
       </section>
   </section>

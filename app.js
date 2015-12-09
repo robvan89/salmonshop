@@ -16,7 +16,7 @@ function Storefront(sname, minCust, maxCust, avpC, rslt) {
 }
 
 Storefront.prototype.getCust = function(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 Storefront.prototype.calcCust = function() {
@@ -39,12 +39,10 @@ var alki = new Storefront('Alki', 3, 24, 2.6);
 
 function outWr() {
   var tmMk = document.getElementById('tm');
-// Create a new TR element <tr></tr>
-var tableEl = document.createElement('table');
-var trEl = document.createElement('tr');
-var tdEl = document.createElement('td');
+  var tableEl = document.createElement('table');
+  tableEl.id = 'resTbl';
+  var trEl = document.createElement('tr');
 
-// Loop through the months array, one index at a time
 for (var i = 0; i <= timeH.length; i++) {
   // For each iteration of the loop; Create a TD element <td></td>
   var thEl = document.createElement('th');
@@ -56,29 +54,64 @@ for (var i = 0; i <= timeH.length; i++) {
 // Append the completely populated UL to the monthsEl element in index.html
 tableEl.appendChild(trEl);
 
-for (var g = 0; g < storefronts.length; g++) {
-  var taEl = document.createElement('tr');
-  var tsEl = document.createElement('th');
-  tsEl.textContent = storefronts[g].sname;
-  taEl.appendChild(tsEl);
-  console.log(storefronts[1].rslt.length);
-    for (var r = 0; r < storefronts[g].rslt.length; r++) {
-
-      var tcEl = document.createElement('td');
-      tcEl.textContent = storefronts[g].rslt[r];
-      taEl.appendChild(tcEl);
-    }
+  for (f; f < storefronts.length; f++) {
+    var taEl = document.createElement('tr');
+    var tsEl = document.createElement('th');
+    tsEl.textContent = storefronts[f].sname;
+    taEl.appendChild(tsEl);
+    console.log(storefronts[1].rslt.length);
+      for (var r = 0; r < storefronts[f].rslt.length; r++) {
+        var tcEl = document.createElement('td');
+        tcEl.textContent = storefronts[f].rslt[r];
+        taEl.appendChild(tcEl);
+      }
     tableEl.appendChild(taEl);
   }
 tmMk.appendChild(tableEl);
 };
 
-function watchmego() {
-  for (i = 0; i < storefronts.length, i++;) {
-    storefronts[i].getCust();
-    storefronts[i].calcCust();
-    storefronts[i].outWr();
+var render = function(event) {
+  event.preventDefault();
+
+  if (!event.target.storename.value || !event.target.minfield.value || !event.target.maxfield.value || !event.target.avgfield.value) {
+    return alert('Fields cannot be empty!');
+   }
+
+  if ((event.target.minfield.value || event.target.maxfield.value || event.target.avgfield.value) === NaN) {
+     return alert('Please enter a number.');
+   }
+
+  var newstoreName = event.target.storename.value;
+  var newstoreMin = parseInt(event.target.minfield.value);
+  var newstoreMax = parseInt(event.target.maxfield.value);
+  var newstoreAvg = parseInt(event.target.avgfield.value);
+
+  if(newstoreMin > newstoreMax) {
+    return alert('Min must be less than max.');
   }
+
+   var newStorefront = new Storefront(newstoreName, newstoreMin, newstoreMax, newstoreAvg);
+   f = storefronts.length-1;
+   console.log('New store ' + newstoreName + ' created. ' + newstoreMin + ' is the min customers. ' + newstoreMax + ' is the max customers. ' + newstoreAvg + ' is the avg customers.');
+
+   event.target.storename.value = null;
+   event.target.minfield.value = null;
+   event.target.maxfield.value = null;
+   event.target.avgfield.value = null;
+
+   var tmRd = document.getElementById('resTbl');
+   var thCr = document.createElement('th');
+   var trCr = document.createElement('tr');
+   thCr.textContent = storefronts[f].sname;
+   trCr.appendChild(thCr);
+   for (var p = 0; p < storefronts[f].rslt.length; p++) {
+     var tdCr = document.createElement('td');
+     tdCr.textContent = storefronts[f].rslt[p];
+     trCr.appendChild(tdCr);
+   }
+   tmRd.appendChild(trCr);
 }
+
+storenameForm.addEventListener('submit', render);
+
 outWr();
-watchmego();

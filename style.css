@@ -46,7 +46,9 @@ table {
   font-family: sans-serif;
 }
 
-tr 
+td {
+  border: 1px solid #00630C;
+}
 
 .tme {
   color: #630057;
