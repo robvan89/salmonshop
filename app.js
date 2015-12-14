@@ -43,7 +43,7 @@ function outWr() {
   tableEl.id = 'resTbl';
   var trEl = document.createElement('tr');
 
-for (var i = 0; i <= timeH.length; i++) {
+for (var i = 0; i < timeH.length; i++) {
   // For each iteration of the loop; Create a TD element <td></td>
   var thEl = document.createElement('th');
   // For each LI element; Assign the contents of the array[i] to the TD's text content
@@ -80,7 +80,7 @@ var render = function(event) {
   var newstoreName = event.target.storename.value;
   var newstoreMin = parseInt(event.target.minfield.value);
   var newstoreMax = parseInt(event.target.maxfield.value);
-  var newstoreAvg = parseInt(event.target.avgfield.value);
+  var newstoreAvg = parseFloat(event.target.avgfield.value);
 
   if(newstoreMin > newstoreMax) {
     return alert('Min must be less than max.');
